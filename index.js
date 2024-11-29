@@ -1,4 +1,3 @@
-
 /**
  * création d'un tableau pour stocker les tâches
  */
@@ -187,4 +186,33 @@ function supprimerTache(nom){
         console.log('Veuillez entrer une valeur');
     }
 }
-console.table(supprimerTache('Joueur au foot'))
+//console.table(supprimerTache('Joueur au foot'))
+
+
+/**
+ * Crée une fonction modifierTache(nom, nouvelleTache) 
+ * qui permet de modifier le nom, la date d’échéance 
+ * et la priorité d’une tâche existante.
+ */
+function modifierTache(nom, nouvelleTache){
+    const tache = taches.find((tache) => tache.nom === nom);
+    if (tache !== undefined){
+        tache.nom = nouvelleTache.nom;
+        tache.dateEcheance = nouvelleTache.dateEcheance;
+        tache.priorite = nouvelleTache.priorite;
+        tache.estTerminee = nouvelleTache.estTerminee;
+    }else{
+        console.log('La tâche n\'est pas trouvée');
+    }
+
+    return taches;
+}
+
+const nouvelleTache = {
+    nom: "Cuisiner",
+    dateEcheance: new moment("2012-12-12").format("YYYY-MM-DD"),
+    priorite: "Haute",
+    estTerminee: true
+};
+console.table(taches)
+console.table(modifierTache('Aller au cinéma', nouvelleTache));
