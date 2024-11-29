@@ -269,3 +269,18 @@ function nombreDeTachesEnRetard(){
 
 //console.table(taches);
 console.log(nombreDeTachesEnRetard());
+
+/**
+ * Crée une fonction afficherTachesTerminees() 
+ * qui affiche toutes les tâches dont la 
+ * propriété estTerminee est true.
+ */
+
+function afficherTachesTerminees(){
+    const nouvellesTaches = taches.filter((tache) => tache.estTerminee);
+    nouvellesTaches.map((tache)=>{
+        console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} Complète`)
+    });
+} 
+afficherTachesTerminees();
+
