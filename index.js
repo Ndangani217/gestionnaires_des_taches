@@ -10,6 +10,13 @@ let taches = [
     },
 
     {
+        nom:'Conduire la voiture',
+        dateEcheance: moment("2023-05-22").format("YYYY-MM-DD"),
+        priorite:'Moyenne',
+        estTerminee:true
+    },
+
+    {
         nom:'Aller au cinéma',
         dateEcheance: moment("2024-11-25").format("YYYY-MM-DD"),
         priorite:'Moyenne',
@@ -290,9 +297,29 @@ function afficherTachesTerminees(){
  */
 
 function nombreTotalDeTaches(){
-    const nombreTotal = taches.length;
-    return nombreTotal;
+    return  taches.length;
+}
+
+//console.table(taches);
+//console.log(nombreTotalDeTaches());
+
+/**
+ * Crée une fonction calculerProgression() 
+ * qui calcule et affiche le pourcentage 
+ * de tâches terminées par rapport 
+ * au nombre total de tâches.
+ */
+function nombreTotalDeTachesTerminees(){
+    const nouvellesTaches = taches.filter((tache) => tache.estTerminee);
+    return nouvellesTaches.length;
+}
+
+function calculerProgression(){
+    const nombre_total_de_taches_terminees = nombreTotalDeTachesTerminees();
+    const nombre_total_de_taches = nombreTotalDeTaches();
+    const pourcentage = (nombre_total_de_taches_terminees/nombre_total_de_taches)* 100;
+    console.log(`Le pourcentage de tâches terminées est : ${pourcentage.toFixed(3)}`);
 }
 
 console.table(taches);
-console.log(nombreTotalDeTaches());
+calculerProgression();
