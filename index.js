@@ -64,5 +64,24 @@ function ajouterTacher(nom, dateEcheance, priorite, estTerminee){
     }
 }
 ajouterTacher('Joueur la guitare', '2024-02-15', 'Moyenne', true);
-console.table(taches);
 
+
+/**
+ * crée une fonction afficherTaches() qui 
+ * affiche toutes les tâches,
+ * y compris leur nom, date d'écheance, 
+ * pririoté et statut (complète ou non)
+ * 
+ */
+function afficherTaches(){
+    taches.map((tache) =>{
+        let statut = '';
+        if(tache.estTerminee){
+            statut = 'Complète'
+        }else{
+            statut = 'Non complétée'
+        }
+        console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${statut}`)
+    })
+}
+afficherTaches();
