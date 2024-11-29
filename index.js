@@ -62,15 +62,12 @@ let taches = [
  * dans le tableau des tâches
  */
 
-const priorites = ['Haute', 'Moyenne', 'Faible'];
-function ajouterTacher(nom, dateEcheance, estTerminee){
-
-    if(nom !=='' && dateEcheance !=='' && estTerminee !== undefined){
-        let nombreAleatoire = Math.floor(Math.random() * 3);
+function ajouterTacher(nom, dateEcheance, estTerminee, priorite){
+    if(nom !=='' && dateEcheance !=='' && priorite !=='' && estTerminee !== undefined){
         const tache = {
             nom : nom,
             dateEcheance: new moment(dateEcheance).format("YYYY-MM-DD"),
-            priorite:priorites[nombreAleatoire],
+            priorite:priorite,
             estTerminee: estTerminee
         }
         taches.push(tache);
@@ -79,10 +76,10 @@ function ajouterTacher(nom, dateEcheance, estTerminee){
         console.log('Veuillez compléter les valeurs');
     }
 }
-//ajouterTacher('Joueur la guitare', '2024-02-30', true);
-//ajouterTacher('Manger le riz', '2024-11-15', false);
-//ajouterTacher('Se coiffer', '2024-10-23', false);
-//ajouterTacher('Ecouter la misique', '2023-09-20', true);
+//ajouterTacher('Joueur la guitare', '2024-02-30', 'Faible',  true);
+//ajouterTacher('Manger le riz', '2024-11-15', 'Moyenne', false);
+//ajouterTacher('Se coiffer', '2024-10-23', 'Haute' false);
+//ajouterTacher('Ecouter la misique', '2023-09-20', 'Moyenne', true);
 //console.table(taches);
 /**
  * crée une fonction afficherTaches() qui 
