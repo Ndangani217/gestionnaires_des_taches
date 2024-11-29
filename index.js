@@ -104,7 +104,7 @@ function filtrerTachesParStatut(statut){
     const nouvellesTaches = taches.filter((tache) => tache.estTerminee === estTerminee);
     return nouvellesTaches;
 }
-//console.table(filtrerTachesParStatut('complète'));
+//console.table(filtrerTachesParStatut('non complétée'));
 
 
 /**
@@ -252,4 +252,20 @@ function tachesDansLes7ProchainsJours(){
         }
     });
 }
-tachesDansLes7ProchainsJours();
+//tachesDansLes7ProchainsJours();
+
+
+/**
+ * Crée une fonction nombreDeTachesEnRetard() 
+ * qui calcule et affiche le nombre de tâches dont 
+ * la date d’échéance est passée mais qui 
+ * ne sont pas encore terminées.
+ */
+function nombreDeTachesEnRetard(){
+    const dateJour = moment().format("YYYY-MM-DD");
+    const nouvellesTaches = taches.filter((tache)=> tache.dateEcheance < dateJour && !tache.estTerminee);
+    return nouvellesTaches.length;
+}
+
+//console.table(taches);
+console.log(nombreDeTachesEnRetard());
