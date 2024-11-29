@@ -43,7 +43,7 @@ let taches = [
     },
     {
         nom:'Achat de jeux vidéos',
-        dateEcheance: new moment("2024-12-05").format("YYYY-MM-DD"),
+        dateEcheance: new moment("2024-12-06").format("YYYY-MM-DD"),
         priorite:'Faible',
         estTerminee:false
     }
@@ -232,7 +232,24 @@ function supprimerTacheSiExiste(nom){
         console.log('La tâche n\'existe pas');
     }
 }
+//console.table(taches)
+//console.table(supprimerTacheSiExiste('Aller au cinéma'));
 
 
-console.table(taches)
-console.table(supprimerTacheSiExiste('Aller au cinéma'));
+/**
+ * Crée une fonction tachesDansLes7ProchainsJours() 
+ * qui affiche toutes les tâches dont la date 
+ * d’échéance est dans les 7 prochains jours 
+ * à partir de la date actuelle.
+ */
+
+function tachesDansLes7ProchainsJours(){
+    const now = moment();
+    const date7prochainsJours = moment().add(7, 'days').format("YYYY-MM-DD");
+    taches.map((tache) =>{
+        if (tache.dateEcheance === date7prochainsJours) {
+            console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${tache.estTerminee}`);
+        }
+    });
+}
+tachesDansLes7ProchainsJours();
