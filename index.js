@@ -61,13 +61,17 @@ let taches = [
  * sa date d'écheance et une priorité (faible, moyenne ou haute)
  * dans le tableau des tâches
  */
-function ajouterTacher(nom, dateEcheance, priorite, estTerminee){
-    if(nom !=='' && dateEcheance !=='' && priorite !== '' && estTerminee !== undefined){
+
+const priorites = ['Haute', 'Moyenne', 'Faible'];
+function ajouterTacher(nom, dateEcheance, estTerminee){
+
+    if(nom !=='' && dateEcheance !=='' && estTerminee !== undefined){
+        let nombreAleatoire = Math.floor(Math.random() * 3);
         const tache = {
-            nom,
+            nom : nom,
             dateEcheance: new moment(dateEcheance).format("YYYY-MM-DD"),
-            priorite,
-            estTerminee,
+            priorite:priorites[nombreAleatoire],
+            estTerminee: estTerminee
         }
         taches.push(tache);
         console.log('La tâche est ajoutée avec succès');
@@ -75,9 +79,11 @@ function ajouterTacher(nom, dateEcheance, priorite, estTerminee){
         console.log('Veuillez compléter les valeurs');
     }
 }
-ajouterTacher('Joueur la guitare', '2024-02-15', 'Moyenne', true);
-
-
+ajouterTacher('Joueur la guitare', '2024-02-30', true);
+ajouterTacher('Manger le riz', '2024-11-15', false);
+ajouterTacher('Se coiffer', '2024-10-23', false);
+ajouterTacher('Ecouter la misique', '2023-09-20', true);
+console.table(taches);
 /**
  * crée une fonction afficherTaches() qui 
  * affiche toutes les tâches,
@@ -321,5 +327,6 @@ function calculerProgression(){
     console.log(`Le pourcentage de tâches terminées est : ${pourcentage.toFixed(3)}`);
 }
 
-console.table(taches);
-calculerProgression();
+//console.table(taches);
+//calculerProgression();
+
