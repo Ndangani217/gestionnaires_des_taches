@@ -1,7 +1,7 @@
 /**
  * création d'un tableau pour stocker les tâches
  */
-let taches = [
+const taches = [
     {
         nom:'Lecture de livres',
         dateEcheance: moment("2024-11-24").format("YYYY-MM-DD"),
@@ -100,3 +100,20 @@ function filtrerTachesParStatut(statut){
     return nouvellesTaches;
 }
 //console.table(filtrerTachesParStatut('complète'));
+
+
+/**
+ * Crée une fonction filtrerTachesParPriorite(priorite) 
+ * qui permet de filtrer les tâches en fonction de leur 
+ * priorité (faible, moyenne ou haute).
+ */
+function filtrerTachesParPriorite(priorite){
+    if(priorite !==''){
+        const nouvellesTaches = taches.filter((tache) => tache.priorite === priorite);
+        return nouvellesTaches ;
+    }else{
+        console.log('veuillez entrer une valeur exacte (haute, moyenne, faible)')
+    } 
+}
+
+console.table(filtrerTachesParPriorite('Haute'))
