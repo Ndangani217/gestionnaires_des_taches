@@ -79,10 +79,10 @@ function ajouterTacher(nom, dateEcheance, estTerminee){
         console.log('Veuillez compléter les valeurs');
     }
 }
-ajouterTacher('Joueur la guitare', '2024-02-30', true);
-ajouterTacher('Manger le riz', '2024-11-15', false);
-ajouterTacher('Se coiffer', '2024-10-23', false);
-ajouterTacher('Ecouter la misique', '2023-09-20', true);
+//ajouterTacher('Joueur la guitare', '2024-02-30', true);
+//ajouterTacher('Manger le riz', '2024-11-15', false);
+//ajouterTacher('Se coiffer', '2024-10-23', false);
+//ajouterTacher('Ecouter la misique', '2023-09-20', true);
 //console.table(taches);
 /**
  * crée une fonction afficherTaches() qui 
@@ -342,4 +342,35 @@ function trierTachesParStatut(){
     return taches;
 }
 
-console.table(trierTachesParStatut());
+//console.table(trierTachesParStatut());
+
+/**
+ * Crée une fonction nombreDeTachesParPriorite() 
+ * qui affiche le nombre de tâches pour chaque 
+ * priorité (faible, moyenne, haute).
+ */
+
+function nombreDeTachesParPriorite(){
+    let nombreDeTachesFaible = 0;
+    let nombreDeTachesMoyenne = 0;
+    let nombreDeTachesHaute = 0;
+
+    taches.map(tache => {
+        switch(tache.priorite){
+            case 'Faible':
+                nombreDeTachesFaible +=1;
+            break;
+            case'Moyenne': 
+                nombreDeTachesMoyenne +=1;
+            break;
+            case 'Haute':
+                nombreDeTachesHaute +=1;
+            break;
+        }
+    });
+
+    console.log(`Le nombre de tâches faible :${nombreDeTachesFaible} \nLe nombre de tâches moyenne :${nombreDeTachesMoyenne}\nLe nombre de tâches haute :${nombreDeTachesHaute}`)
+}
+
+console.table(taches);
+nombreDeTachesParPriorite();
