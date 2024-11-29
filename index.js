@@ -27,7 +27,7 @@ const taches = [
         nom:'Aller à la prière',
         dateEcheance: new moment("2022-12-05").format("YYYY-MM-DD"),
         priorite:'Haute',
-        estTerminee:true
+        estTerminee:false
     }
     ,{
         nom:'Joueur au foot',
@@ -154,3 +154,20 @@ function trierTachesParDateEcheance(){
 }
 
 //console.table(trierTachesParDateEcheance());
+
+
+/***
+ * Crée une fonction marquerTacheCommeTerminee(nom) 
+ * qui marque une tâche comme terminée 
+ * (modifie la propriété estTerminee à true).
+ */
+function marquerTacheCommeTerminee(nom){
+    const tache = taches.find((tache) => tache.nom === nom);
+    if(tache !== undefined){
+        tache.estTerminee = true
+    }else{
+        console.log('La tache n\'est pas trouvé')
+    }
+    return taches;
+}
+console.table(marquerTacheCommeTerminee('Joueur au foot'))
