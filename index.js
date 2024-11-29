@@ -1,10 +1,11 @@
+
 /**
  * création d'un tableau pour stocker les tâches
  */
 let taches = [
     {
         nom:'Lecture de livres',
-        dateEcheance: moment("2024-09-24").format("YYYY-MM-DD"),
+        dateEcheance: moment("2024-12-24").format("YYYY-MM-DD"),
         priorite:'Haute',
         estTerminee:true
     },
@@ -193,9 +194,8 @@ function supprimerTache(nom){
         return [];
     }
 }
-console.table(taches)
-supprimerTache('Lecture de livres')
-console.table(taches);
+//supprimerTache('Lecture de livres')
+
 
 /**
  * Crée une fonction modifierTache(nom, nouvelleTache) 
@@ -253,14 +253,15 @@ function supprimerTacheSiExiste(nom){
 
 function tachesDansLes7ProchainsJours(){
     const now = moment();
-    const date7prochainsJours = moment().add(7, 'days').format("YYYY-MM-DD");
+    const date7prochainsJours = now.add(7, 'days').format("YYYY-MM-DD");
     taches.map((tache) =>{
-        if (tache.dateEcheance === date7prochainsJours) {
+        const dateEcheance = moment(tache.dateEcheance)
+        if ((dateEcheance).isBefore(date7prochainsJours)) {
             console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${tache.estTerminee}`);
         }
     });
 }
-//tachesDansLes7ProchainsJours();
+tachesDansLes7ProchainsJours();
 
 
 /**
