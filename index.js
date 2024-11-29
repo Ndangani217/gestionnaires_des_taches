@@ -109,7 +109,7 @@ function afficherTaches(){
 function filtrerTachesParStatut(statut){
     return taches.filter((tache) => tache.estTerminee === statut);
 }
-console.table(filtrerTachesParStatut(false));
+//console.table(filtrerTachesParStatut(false));
 
 
 /**
@@ -184,15 +184,18 @@ function marquerTacheCommeTerminee(nom){
  */
 function supprimerTache(nom){
     if(nom !==''){
-        taches = taches.filter((tache) => tache.nom !== nom);
-        console.log('La tâche supprimée avec succès');
-        return taches
+        const indexTache = taches.findIndex((tache) => tache.nom === nom);
+        if(indexTache > -1) {
+            return taches.splice(indexTache, 1);
+        }
     }else{
         console.log('Veuillez entrer une valeur');
+        return [];
     }
 }
-//console.table(supprimerTache('Joueur au foot'))
-
+console.table(taches)
+supprimerTache('Lecture de livres')
+console.table(taches);
 
 /**
  * Crée une fonction modifierTache(nom, nouvelleTache) 
