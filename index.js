@@ -268,7 +268,7 @@ function nombreDeTachesEnRetard(){
 }
 
 //console.table(taches);
-console.log(nombreDeTachesEnRetard());
+//console.log(nombreDeTachesEnRetard());
 
 /**
  * Crée une fonction afficherTachesTerminees() 
@@ -282,5 +282,17 @@ function afficherTachesTerminees(){
         console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} Complète`)
     });
 } 
-afficherTachesTerminees();
+//afficherTachesTerminees();
 
+
+/**
+ * Calculer le nombre total de tâches
+ */
+
+function nombreTotalDeTaches(){
+    const nombreTotal = taches.length;
+    return nombreTotal;
+}
+
+console.table(taches);
+console.log(nombreTotalDeTaches());
