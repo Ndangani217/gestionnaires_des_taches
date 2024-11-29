@@ -1,10 +1,11 @@
+
 /**
  * création d'un tableau pour stocker les tâches
  */
 const taches = [
     {
         nom:'Lecture de livres',
-        dateEcheance: moment("2024-11-24").format("YYYY-MM-DD"),
+        dateEcheance: moment("2024-09-24").format("YYYY-MM-DD"),
         priorite:'Haute',
         estTerminee:true
     },
@@ -18,14 +19,19 @@ const taches = [
 
     {
         nom:'S\'exèrcé avec javascript',
-        dateEcheance: moment("2023-11-26").format("YYYY-MM-DD"),
+        dateEcheance: moment("2023-10-26").format("YYYY-MM-DD"),
         priorite:'Haute',
         estTerminee:true
     },
-
     {
+        nom:'Aller à la prière',
+        dateEcheance: new moment("2022-12-05").format("YYYY-MM-DD"),
+        priorite:'Haute',
+        estTerminee:true
+    }
+    ,{
         nom:'Joueur au foot',
-        dateEcheance: moment("2023-11-27").format("YYYY-MM-DD"),
+        dateEcheance: moment("2023-08-27").format("YYYY-MM-DD"),
         priorite:'Faible',
         estTerminee:false
     },
@@ -135,3 +141,16 @@ function trierTachesParPriorite(){
     return taches;
 }
 //console.table(trierTachesParPriorite())
+
+
+/**
+ * Crée une fonction trierTachesParDateEcheance() 
+ * qui trie les tâches par leur date d’échéance, 
+ * de la plus proche à la plus éloignée.
+ */
+function trierTachesParDateEcheance(){
+    taches.sort((tache, tache2) => new moment(tache.dateEcheance) - new moment(tache2.dateEcheance));
+    return taches;
+}
+
+//console.table(trierTachesParDateEcheance());
