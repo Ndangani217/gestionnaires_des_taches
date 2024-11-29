@@ -1,29 +1,68 @@
-const taches = [
+/**
+ * création d'un tableau pour stocker les tâches
+ */
+let taches = [
     {
         nom:'Lecture de livres',
-        dateEcheance: new Date(2024-11-24),
+        dateEcheance: moment("2024-11-24").format("YYYY-MM-DD"),
         priorite:'Haute',
         estTerminee:true
     },
 
     {
         nom:'Aller au cinéma',
-        dateEcheance: new Date(2024-11-25),
+        dateEcheance: moment("2024-11-25").format("YYYY-MM-DD"),
         priorite:'Moyenne',
         estTerminee:false
     },
 
     {
         nom:'S\'exèrcé avec javascript',
-        dateEcheance: new Date(2023-11-26),
+        dateEcheance: moment("2023-11-26").format("YYYY-MM-DD"),
         priorite:'Haute',
         estTerminee:true
     },
 
     {
         nom:'Joueur au foot',
-        dateEcheance: new Date(2023-11-27),
-        priorite:'Basse',
+        dateEcheance: moment("2023-11-27").format("YYYY-MM-DD"),
+        priorite:'Faible',
+        estTerminee:false
+    },
+
+    {
+        nom:'Suivre le match de la RDC',
+        dateEcheance: moment("2023-11-22").format("YYYY-MM-DD"),
+        priorite:'Haute',
+        estTerminee:true
+    },
+    {
+        nom:'Achat de jeux vidéos',
+        dateEcheance: new moment("2024-12-05").format("YYYY-MM-DD"),
+        priorite:'Moyenne',
         estTerminee:false
     }
-] 
+]
+/**
+ *  Crée une fonction ajouterTacher(nom, dateEcheance, priorite)
+ *  qui permet d'ajouter une nouvelle tâche avec son nom, 
+ * sa date d'écheance et une priorité (faible, moyenne ou haute)
+ * dans le tableau des tâches
+ */
+function ajouterTacher(nom, dateEcheance, priorite, estTerminee){
+    if(nom !=='' && dateEcheance !=='' && priorite !== '' && estTerminee !== undefined){
+        const tache = {
+            nom,
+            dateEcheance: new moment(dateEcheance).format("YYYY-MM-DD"),
+            priorite,
+            estTerminee,
+        }
+        taches.push(tache);
+        console.log('La tâche est ajoutée avec succès');
+    }else{
+        console.log('Veuillez compléter les valeurs');
+    }
+}
+ajouterTacher('Joueur la guitare', '2024-02-15', 'Moyenne', true);
+console.table(taches);
+
