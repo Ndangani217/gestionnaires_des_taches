@@ -84,4 +84,19 @@ function afficherTaches(){
         console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${statut}`)
     })
 }
-afficherTaches();
+//afficherTaches();
+
+/**
+ * Crée une fonction filtrerTachesParStatut(statut) 
+ * qui permet de filtrer les tâches selon 
+ * leur statut : "complète" ou "non complétée".
+ */
+function filtrerTachesParStatut(statut){
+    let estTerminee = false;
+    if(statut ==='complète'){
+        estTerminee = true;
+    }
+    const nouvellesTaches = taches.filter((tache) => tache.estTerminee === estTerminee);
+    return nouvellesTaches;
+}
+//console.table(filtrerTachesParStatut('complète'));
