@@ -83,7 +83,7 @@ ajouterTacher('Joueur la guitare', '2024-02-30', true);
 ajouterTacher('Manger le riz', '2024-11-15', false);
 ajouterTacher('Se coiffer', '2024-10-23', false);
 ajouterTacher('Ecouter la misique', '2023-09-20', true);
-console.table(taches);
+//console.table(taches);
 /**
  * crée une fonction afficherTaches() qui 
  * affiche toutes les tâches,
@@ -330,3 +330,16 @@ function calculerProgression(){
 //console.table(taches);
 //calculerProgression();
 
+/**
+ * Crée une fonction trierTachesParStatut() 
+ * qui trie les tâches par leur statut, 
+ * de manière à ce que les tâches terminées 
+ * apparaissent en premier.
+ */
+
+function trierTachesParStatut(){
+    taches.sort((tache, tache2)=> tache2.estTerminee - tache.estTerminee)
+    return taches;
+}
+
+console.table(trierTachesParStatut());
