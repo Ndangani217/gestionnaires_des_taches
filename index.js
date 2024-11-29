@@ -107,14 +107,9 @@ function afficherTaches(){
  * leur statut : "complète" ou "non complétée".
  */
 function filtrerTachesParStatut(statut){
-    let estTerminee = false;
-    if(statut ==='complète'){
-        estTerminee = true;
-    }
-    const nouvellesTaches = taches.filter((tache) => tache.estTerminee === estTerminee);
-    return nouvellesTaches;
+    return taches.filter((tache) => tache.estTerminee === statut);
 }
-//console.table(filtrerTachesParStatut('non complétée'));
+console.table(filtrerTachesParStatut(false));
 
 
 /**
@@ -369,8 +364,8 @@ function nombreDeTachesParPriorite(){
     console.log(`Le nombre de tâches faible :${nombreDeTachesFaible} \nLe nombre de tâches moyenne :${nombreDeTachesMoyenne}\nLe nombre de tâches haute :${nombreDeTachesHaute}`)
 }
 
-console.table(taches);
-nombreDeTachesParPriorite();
+//console.table(taches);
+//nombreDeTachesParPriorite();
 
 /**
  * Crée une fonction afficherTacheFormattee(tache) 
@@ -388,6 +383,6 @@ function afficherTacheFormattee(tache){
     console.log(`Tâche : ${tache.nom} | Date : ${tache.dateEcheance} | Priorité : ${tache.priorite} | Statut : ${statut}`)
 }
 
-taches.map(tache =>{
+/*taches.map(tache =>{
     afficherTacheFormattee(tache);
-})
+})*/
