@@ -39,7 +39,7 @@ const taches = [
     {
         nom:'Achat de jeux vidéos',
         dateEcheance: new moment("2024-12-05").format("YYYY-MM-DD"),
-        priorite:'Moyenne',
+        priorite:'Faible',
         estTerminee:false
     }
 ]
@@ -115,5 +115,23 @@ function filtrerTachesParPriorite(priorite){
         console.log('veuillez entrer une valeur exacte (haute, moyenne, faible)')
     } 
 }
+//console.table(filtrerTachesParPriorite('Haute'))
 
-console.table(filtrerTachesParPriorite('Haute'))
+
+/**
+ * Crée une fonction trierTachesParPriorite() 
+ * qui trie les tâches dans le tableau par priorité, 
+ * de la plus haute à la plus basse. Utilise la 
+ * méthode sort() pour le faire.
+ */
+
+function trierTachesParPriorite(){
+    const priorites = {
+        'Haute': 1,
+        'Moyenne': 2,
+        'Faible': 3
+    };
+    taches.sort((tache, tache2) => priorites[tache.priorite] - priorites[tache2.priorite]);
+    return taches;
+}
+//console.table(trierTachesParPriorite())
