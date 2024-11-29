@@ -2,7 +2,7 @@
 /**
  * création d'un tableau pour stocker les tâches
  */
-const taches = [
+let taches = [
     {
         nom:'Lecture de livres',
         dateEcheance: moment("2024-09-24").format("YYYY-MM-DD"),
@@ -170,4 +170,21 @@ function marquerTacheCommeTerminee(nom){
     }
     return taches;
 }
-console.table(marquerTacheCommeTerminee('Joueur au foot'))
+//console.table(marquerTacheCommeTerminee('Joueur au foot'))
+
+
+/**
+ * Crée une fonction supprimerTache(nom) qui supprime 
+ * une tâche du tableau en fonction de 
+ * son nom en utilisant la méthode filter().
+ */
+function supprimerTache(nom){
+    if(nom !==''){
+        taches = taches.filter((tache) => tache.nom !== nom);
+        console.log('La tâche supprimée avec succès');
+        return taches
+    }else{
+        console.log('Veuillez entrer une valeur');
+    }
+}
+console.table(supprimerTache('Joueur au foot'))
