@@ -214,5 +214,25 @@ const nouvelleTache = {
     priorite: "Haute",
     estTerminee: true
 };
+//console.table(taches)
+//console.table(modifierTache('Aller au cinéma', nouvelleTache));
+
+/**
+ * Crée une fonction supprimerTacheSiExiste(nom) 
+ * qui vérifie si une tâche existe avant de tenter 
+ * de la supprimer. Si la tâche n'existe pas, 
+ * affiche un message d'erreur.
+ */
+function supprimerTacheSiExiste(nom){
+    const tacheExiste = taches.some((tache) => tache.nom === nom);
+    if(tacheExiste){
+        taches = taches.filter((tache) => tache.nom !== nom);
+        return taches;
+    }else{
+        console.log('La tâche n\'existe pas');
+    }
+}
+
+
 console.table(taches)
-console.table(modifierTache('Aller au cinéma', nouvelleTache));
+console.table(supprimerTacheSiExiste('Aller au cinéma'));
