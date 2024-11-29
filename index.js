@@ -374,3 +374,23 @@ function nombreDeTachesParPriorite(){
 
 console.table(taches);
 nombreDeTachesParPriorite();
+
+/**
+ * Crée une fonction afficherTacheFormattee(tache) 
+ * qui prend une tâche et l'affiche dans un format lisible comme : 
+ * "Tâche : [nom] | Date : [date] | Priorité : [priorité] | Statut : [statut]".
+ */
+
+function afficherTacheFormattee(tache){
+    let statut='';
+    if(tache.estTerminee){
+        statut = 'Complète';
+    }else{
+        statut = 'Non complétée'
+    }
+    console.log(`Tâche : ${tache.nom} | Date : ${tache.dateEcheance} | Priorité : ${tache.priorite} | Statut : ${statut}`)
+}
+
+taches.map(tache =>{
+    afficherTacheFormattee(tache);
+})
