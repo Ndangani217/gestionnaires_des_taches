@@ -1,4 +1,3 @@
-
 /**
  * création d'un tableau pour stocker les tâches
  */
@@ -91,12 +90,7 @@ function ajouterTacher(nom, dateEcheance, estTerminee, priorite){
  */
 function afficherTaches(){
     taches.map((tache) =>{
-        let statut = '';
-        if(tache.estTerminee){
-            statut = 'Complète'
-        }else{
-            statut = 'Non complétée'
-        }
+        let statut = (tache.estTerminee) ?'Complète' :'Non complétée';
         console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${statut}`)
     })
 }
@@ -261,7 +255,6 @@ function tachesDansLes7ProchainsJours(){
         }
     });
 }
-tachesDansLes7ProchainsJours();
 
 
 /**
@@ -378,15 +371,37 @@ function nombreDeTachesParPriorite(){
  */
 
 function afficherTacheFormattee(tache){
-    let statut='';
-    if(tache.estTerminee){
-        statut = 'Complète';
-    }else{
-        statut = 'Non complétée'
-    }
+    let statut = (tache.estTerminee) ? 'Complète' : 'Non complétée';
     console.log(`Tâche : ${tache.nom} | Date : ${tache.dateEcheance} | Priorité : ${tache.priorite} | Statut : ${statut}`)
 }
 
 /*taches.map(tache =>{
     afficherTacheFormattee(tache);
 })*/
+
+/*
+ * Crée une fonction joursRestantsAvantEcheance(tache) 
+ * qui calcule et retourne le nombre de jours restants 
+ * avant la date d'échéance d’une tâche.
+ */
+function joursRestantsAvantEcheance(tache) {
+    const now = moment();
+    const dateEcheance = moment(tache.dateEcheance);
+
+    if (dateEcheance.isAfter(now)) {
+        const differenceMs = dateEcheance.diff(now);
+        const differencesJours = differenceMs / (1000 * 60 * 60 * 24);
+        console.log(`Le nombre de jours restants avant l'echéance est : ${Math.ceil(differencesJours)}`); 
+    }else{
+        console.log(`Il n'y a pas, le nombre de jours restants avant l'echéance`); 
+    }
+}
+
+const tache = {
+    nom: 'Faire le sport',
+    dateEcheance: moment("2024-12-01").format("YYYY-MM-DD"),
+    priorite: 'Moyenne',
+    estTerminee: true
+}
+
+joursRestantsAvantEcheance(tache);
