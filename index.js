@@ -437,5 +437,18 @@ function tacheEnRetard(tache){
         console.log('Non, La date d\'écheance n\'est pas depassée ou elle est déjà compléte');
     }
 }
+//tacheEnRetard(tache);
 
-tacheEnRetard(tache);
+/**
+ * Crée une fonction filtrerTachesParPrioriteEtStatut(priorite, statut) 
+ * qui permet de filtrer les tâches à la fois 
+ * par priorité et statut (complète ou non).
+ */
+
+function filtrerTachesParPrioriteEtStatut(priorite, statut){
+    const verifierStatut = (statut === 'Complète') ? true : false;
+    const nouvelleTaches = taches.filter((tache) => tache.priorite === priorite && tache.estTerminee === verifierStatut);
+    console.table(nouvelleTaches);
+}
+
+filtrerTachesParPrioriteEtStatut('Faible', 'Non complétée')
