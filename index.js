@@ -451,4 +451,20 @@ function filtrerTachesParPrioriteEtStatut(priorite, statut){
     console.table(nouvelleTaches);
 }
 
-filtrerTachesParPrioriteEtStatut('Faible', 'Non complétée')
+//filtrerTachesParPrioriteEtStatut('Faible', 'Non complétée')
+
+/**
+ * Crée une fonction archiverTaches() qui déplace 
+ * toutes les tâches terminées dans un tableau tachesArchivees. 
+ * Affiche un message confirmant le déplacement 
+ * des tâches terminées dans l'archive.
+ */
+let tachesArchivees = [];
+function archiverTaches(){
+    tachesArchivees = taches.filter((tache) => tache.estTerminee);
+    console.log('Les tâches sont archivées')
+    return tachesArchivees;
+}
+
+archiverTaches()
+console.table(tachesArchivees)
