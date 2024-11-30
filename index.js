@@ -1,3 +1,4 @@
+
 /**
  * création d'un tableau pour stocker les tâches
  */
@@ -409,12 +410,32 @@ function joursRestantsAvantEcheance(tache) {
         console.log(`Il n'y a pas, le nombre de jours restants avant l'echéance`); 
     }
 }
+//joursRestantsAvantEcheance(tache);
 
 const tache = {
     nom: 'Faire le sport',
-    dateEcheance: moment("2024-12-01").format("YYYY-MM-DD"),
+    dateEcheance: moment("2024-11-29").format("YYYY-MM-DD"),
     priorite: 'Moyenne',
-    estTerminee: true
+    estTerminee: false
 }
 
-joursRestantsAvantEcheance(tache);
+
+
+/**
+ * Crée une fonction tacheEnRetard(tache) 
+ * qui vérifie si la date d’échéance d’une 
+ * tâche est dépassée et si elle n’est pas terminée.
+ */
+
+function tacheEnRetard(tache){
+    const now = moment().format("YYYY-MM-DD");
+    const dateEcheance = moment(tache.dateEcheance);
+
+    if (dateEcheance.isBefore(now) && ! tache.estTerminee) {
+        console.log('Oui, La date d’échéance d’une tâche est dépassée et elle n’est pas terminée');
+    }else{
+        console.log('Non, La date d\'écheance n\'est pas depassée ou elle est déjà compléte');
+    }
+}
+
+tacheEnRetard(tache);
