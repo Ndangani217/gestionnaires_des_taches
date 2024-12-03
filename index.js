@@ -5,63 +5,63 @@
 let taches = [
     {
         nom:'Lecture de livres',
-        dateEcheance: moment("2024-12-24").format("YYYY-MM-DD"),
+        dateEcheance:'',
         priorite:'Haute',
-        estTerminee:true,
+        estTerminee:false,
         description:'Primordiale'
     },
 
     {
         nom:'Conduire la voiture',
-        dateEcheance: moment("2023-05-22").format("YYYY-MM-DD"),
+        dateEcheance: moment("2024-12-09").format("YYYY-MM-DD"),
         priorite:'Moyenne',
-        estTerminee:true,
-        description:'La tâche difficile à réaliser'
+        estTerminee:false,
+        description:''
     },
 
     {
         nom:'Aller au cinéma',
-        dateEcheance: moment("2024-11-25").format("YYYY-MM-DD"),
+        dateEcheance: moment("2024-12-04").format("YYYY-MM-DD"),
         priorite:'Moyenne',
         estTerminee:false,
-        description:'Moins important'
+        description:''
     },
 
     {
         nom:'S\'exèrcé avec javascript',
-        dateEcheance: moment("2023-10-26").format("YYYY-MM-DD"),
+        dateEcheance: '',
         priorite:'Haute',
-        estTerminee:true,
-        description:'Très efficace réalisé'
+        estTerminee:false,
+        description:''
     },
     {
         nom:'Aller à la prière',
-        dateEcheance: new moment("2022-12-05").format("YYYY-MM-DD"),
+        dateEcheance: '',
         priorite:'Haute',
         estTerminee:false,
-        description:'À ne pas manquer'
+        description:''
     }
     ,{
         nom:'Joueur au foot',
-        dateEcheance: moment("2023-08-27").format("YYYY-MM-DD"),
+        dateEcheance: '',
         priorite:'Faible',
         estTerminee:false,
-        description:'non importante pour l\'instant'
+        description:''
     },
 
     {
         nom:'Suivre le match de la RDC',
-        dateEcheance: moment("2023-11-22").format("YYYY-MM-DD"),
+        dateEcheance: '',
         priorite:'Haute',
         estTerminee:false,
-        description:'non importante pour l\'instant'
+        description:''
     },
     {
         nom:'Achat de jeux vidéos',
-        dateEcheance: new moment("2024-12-06").format("YYYY-MM-DD"),
+        dateEcheance: '',
         priorite:'Faible',
         estTerminee:false,
-        description:'non importante pour l\'instant'
+        description:''
     }
 ]
 /**
@@ -71,14 +71,14 @@ let taches = [
  * dans le tableau des tâches
  */
 
-function ajouterTacher(nom, dateEcheance, estTerminee, priorite, description){
-    if(nom !=='' && dateEcheance !=='' && priorite !=='' && estTerminee !== undefined && description !==''){
+function ajouterTacher(nom, dateEcheance, priorite){
+    if(nom !=='' && dateEcheance !=='' && priorite !==''){
         const tache = {
-            nom : nom,
+            nom,
             dateEcheance: new moment(dateEcheance).format("YYYY-MM-DD"),
-            priorite:priorite,
-            estTerminee: estTerminee,
-            description:description
+            priorite,
+            estTerminee: false,
+            description:''
         }
         taches.push(tache);
         console.log('La tâche est ajoutée avec succès');
@@ -86,7 +86,7 @@ function ajouterTacher(nom, dateEcheance, estTerminee, priorite, description){
         console.log('Veuillez compléter les valeurs');
     }
 }
-//ajouterTacher('Joueur la guitare', '2024-02-30', 'Faible',  true);
+//ajouterTacher('Joueur la guitare', '2024-02-17', 'Moyenne');
 //ajouterTacher('Manger le riz', '2024-11-15', 'Moyenne', false);
 //ajouterTacher('Se coiffer', '2024-10-23', 'Haute' false);
 //ajouterTacher('Ecouter la misique', '2023-09-20', 'Moyenne', true);
@@ -99,7 +99,7 @@ function ajouterTacher(nom, dateEcheance, estTerminee, priorite, description){
  * 
  */
 function afficherTaches(){
-    taches.map((tache) =>{
+    taches.forEach((tache) =>{
         let statut = (tache.estTerminee) ?'Complète' :'Non complétée';
         console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${statut} ${tache.description}`)
     })
@@ -193,9 +193,6 @@ function supprimerTache(nom){
         if(indexTache > -1) {
             return taches.splice(indexTache, 1);
         }
-    }else{
-        console.log('Veuillez entrer une valeur');
-        return [];
     }
 }
 //supprimerTache('Lecture de livres')
@@ -211,7 +208,7 @@ function modifierTache(nom, nouvelleTache){
     if (tache !== undefined){
         tache.nom = nouvelleTache.nom;
         tache.dateEcheance = nouvelleTache.dateEcheance;
-        tache.priorite = nouvelleTache.priorite;
+        tache.priorite = nouvelleTache.priorite || tache.priorite;
         tache.estTerminee = nouvelleTache.estTerminee;
         tache.description = nouvelleTache.description
     }else{
@@ -259,14 +256,12 @@ function supprimerTacheSiExiste(nom){
 function tachesDansLes7ProchainsJours(){
     const now = moment();
     const date7prochainsJours = now.add(7, 'days').format("YYYY-MM-DD");
-    taches.map((tache) =>{
-        const dateEcheance = moment(tache.dateEcheance)
-        if ((dateEcheance).isBefore(date7prochainsJours)) {
-            console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${tache.estTerminee}`);
-        }
-    });
+    const tachesFiltrees = taches.filter((tache)=> moment(tache.dateEcheance).isBefore(date7prochainsJours));
+    tachesFiltrees.forEach((tache) =>{
+        console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} ${tache.estTerminee}`);
+    })
 }
-
+tachesDansLes7ProchainsJours();
 
 /**
  * Crée une fonction nombreDeTachesEnRetard() 
@@ -276,8 +271,8 @@ function tachesDansLes7ProchainsJours(){
  */
 function nombreDeTachesEnRetard(){
     const dateJour = moment().format("YYYY-MM-DD");
-    const nouvellesTaches = taches.filter((tache)=> tache.dateEcheance < dateJour && !tache.estTerminee);
-    return nouvellesTaches.length;
+    const tachesFiltrees = taches.filter((tache)=> tache.dateEcheance < dateJour && !tache.estTerminee);
+    return tachesFiltrees.length;
 }
 
 //console.table(taches);
@@ -290,8 +285,8 @@ function nombreDeTachesEnRetard(){
  */
 
 function afficherTachesTerminees(){
-    const nouvellesTaches = taches.filter((tache) => tache.estTerminee);
-    nouvellesTaches.map((tache)=>{
+    const tachesFiltrees = taches.filter((tache) => tache.estTerminee);
+    tachesFiltrees.forEach((tache)=>{
         console.log(`${tache.nom} ${tache.dateEcheance} ${tache.priorite} Complète`)
     });
 } 
@@ -351,31 +346,32 @@ function trierTachesParStatut(){
  */
 
 function nombreDeTachesParPriorite(){
-    let nombreDeTachesFaible = 0;
-    let nombreDeTachesMoyenne = 0;
-    let nombreDeTachesHaute = 0;
 
-    taches.map(tache => {
+    const tachesParPriorite = {
+        nombreDeTachesFaible : 0,
+        nombreDeTachesMoyenne : 0,
+        nombreDeTachesHaute : 0
+    }
+
+    taches.forEach(tache => {
         switch(tache.priorite){
             case 'Faible':
-                nombreDeTachesFaible +=1;
+                tachesParPriorite.nombreDeTachesFaible ++;
             break;
             case'Moyenne': 
-                nombreDeTachesMoyenne +=1;
+                tachesParPriorite.nombreDeTachesMoyenne ++;
             break;
             case 'Haute':
-                nombreDeTachesHaute +=1;
+                tachesParPriorite.nombreDeTachesHaute ++;
             break;
         }
     });
 
-    console.log(`Le nombre de tâches faible :${nombreDeTachesFaible} 
-        \nLe nombre de tâches moyenne :${nombreDeTachesMoyenne}
-        \nLe nombre de tâches haute :${nombreDeTachesHaute}`)
+    return tachesParPriorite;
 }
 
 //console.table(taches);
-//nombreDeTachesParPriorite();
+//console.log(nombreDeTachesParPriorite());
 
 /**
  * Crée une fonction afficherTacheFormattee(tache) 
@@ -447,8 +443,8 @@ function tacheEnRetard(tache){
 
 function filtrerTachesParPrioriteEtStatut(priorite, statut){
     const verifierStatut = (statut === 'Complète') ? true : false;
-    const nouvelleTaches = taches.filter((tache) => tache.priorite === priorite && tache.estTerminee === verifierStatut);
-    console.table(nouvelleTaches);
+    const tachesFiltre = taches.filter((tache) => tache.priorite === priorite && tache.estTerminee === verifierStatut);
+    console.table(tachesFiltre)
 }
 
 //filtrerTachesParPrioriteEtStatut('Faible', 'Non complétée')
@@ -466,5 +462,5 @@ function archiverTaches(){
     return tachesArchivees;
 }
 
-archiverTaches()
-console.table(tachesArchivees)
+//archiverTaches()
+//console.table(tachesArchivees)
